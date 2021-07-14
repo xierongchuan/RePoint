@@ -51,7 +51,7 @@ class MainScreen extends StatelessWidget {
                 'RePoint',
                 style: TextStyle(
                   fontFamily: 'Google',
-                  fontSize: 20.0,
+                  fontSize: 30.0,
                   color: mWhite
                 ),
               ),
