@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:repoint/pages/todoPage.dart';
+import 'package:repoint/pages/toDoPage.dart';
 import 'package:repoint/pages/mainScreen.dart';
 
 final Color mBlue = Color(0xFF1389FD);
