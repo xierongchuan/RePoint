@@ -32,6 +32,47 @@ class _ToDoPageState extends State<ToDoPage> {
     toDoList.add('ATX 980W');
   }
 
+  void _menuOpen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context){
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Menu',
+                style: TextStyle(
+                  fontFamily: 'Google',
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+            body: Row(
+              children: [
+                Padding(padding: EdgeInsets.only(left: 15),),
+                OutlinedButton(
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(mLightGrey),
+                    overlayColor: MaterialStateProperty.all<Color>(mLightGreyAlpha),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Main menu',
+                    style: TextStyle(
+                      fontFamily: 'Google',
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +80,7 @@ class _ToDoPageState extends State<ToDoPage> {
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          
           children: [
 
             Text(
@@ -48,6 +90,12 @@ class _ToDoPageState extends State<ToDoPage> {
                 fontSize: 20.0,
               ),
             ),
+
+            IconButton(
+              icon: Icon(Icons.menu_outlined),
+              onPressed: _menuOpen,
+            ),
+
 
             // OutlinedButton(
             //   style: ButtonStyle(

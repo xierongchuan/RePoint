@@ -62,7 +62,7 @@ class MainScreen extends StatelessWidget {
                   overlayColor: MaterialStateProperty.all<Color>(mLightGreyAlpha),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/toDo');
+                  Navigator.pushReplacementNamed(context, '/toDo');
                 },
                 child: Text(
                   'ToDo',
