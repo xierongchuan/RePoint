@@ -56,6 +56,7 @@ class _ToDoPageState extends State<ToDoPage> {
                   ),
                   onPressed: () {
                     Navigator.pop(context);
+                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                   },
                   child: Text(
                     'Main menu',
