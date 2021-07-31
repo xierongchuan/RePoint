@@ -11,29 +11,29 @@ class ToDoPage extends StatefulWidget {
 
 class _ToDoPageState extends State<ToDoPage> {
 
-  List toDoList = [];
+  List<String> toDoList = [];
 
   String _userToDo = '';
 
-  String displayName = '';
+  // List<String> toDoListLDB = [];
 
   @override
   void initState() {
 
     getData();
 
-    toDoList.add('KitKat x40');
-    toDoList.add('Danissimo x100');
-    toDoList.add('Sprite x10');
-    toDoList.add('Fanta x20');
-    toDoList.add('SSD 2TB x2');
-    toDoList.add('HDD 8TB x2');
-    toDoList.add('RAM 16GB DDR4 x8');
-    toDoList.add('ASRock TRX 40 Taichi');
-    toDoList.add('Cougar Conquer');
-    toDoList.add('AMD Threadripper 3');
-    toDoList.add('AMD Radeon RX 6900');
-    toDoList.add('ATX 980W');
+    // toDoList.add('KitKat x40');
+    // toDoList.add('Danissimo x100');
+    // toDoList.add('Sprite x10');
+    // toDoList.add('Fanta x20');
+    // toDoList.add('SSD 2TB x2');
+    // toDoList.add('HDD 8TB x2');
+    // toDoList.add('RAM 16GB DDR4 x8');
+    // toDoList.add('ASRock TRX 40 Taichi');
+    // toDoList.add('Cougar Conquer');
+    // toDoList.add('AMD Threadripper 3');
+    // toDoList.add('AMD Radeon RX 6900');
+    // toDoList.add('ATX 980W');
 
     super.initState();
   }
@@ -41,8 +41,17 @@ class _ToDoPageState extends State<ToDoPage> {
   getData() async {
     SharedPreferences LDB = await SharedPreferences.getInstance();
     setState(() {
-      displayName = LDB.getString('displayName') ?? 'NULL';
+      toDoList = LDB.getStringList('toDoListLDB') ?? toDoList;
     });
+    // print(displayName);
+  }
+
+  setData() async {
+    SharedPreferences LDB = await SharedPreferences.getInstance();
+    setState(() {
+      LDB.setStringList('toDoListLDB', toDoList);
+    });
+    // print(displayName);
   }
 
   void _menuOpen() {
@@ -105,10 +114,10 @@ class _ToDoPageState extends State<ToDoPage> {
               ),
             ),
 
-            IconButton(
-              icon: Icon(Icons.menu_outlined),
-              onPressed: _menuOpen,
-            ),
+            // IconButton(
+            //   icon: Icon(Icons.menu_outlined),
+            //   onPressed: _menuOpen,
+            // ),
 
 
             // OutlinedButton(
@@ -177,12 +186,13 @@ class _ToDoPageState extends State<ToDoPage> {
                       onPressed: () {
                         setState(() {
                           toDoList.insert(tIndex ,tTodo);
+                          setData();
                         });
                       },
                     ),
                   );
+                  setData();
                   ScaffoldMessenger.of(context).showSnackBar(snackBarCancell);
-
                   // print(toDoList);
                 });
               },
@@ -237,6 +247,7 @@ class _ToDoPageState extends State<ToDoPage> {
                     setState(() {
                       toDoList.insert(0 ,_userToDo);
                       _userToDo = '';
+                      setData();
                     });
 
                     Navigator.of(context).pop();

@@ -20,8 +20,10 @@ void main(){
     ),
     initialRoute: '/',
     routes: {
-      '/': (context) => MainScreen(),
-      '/toDo': (context) => ToDoPage(),
+      // '/': (context) => MainScreen(),
+      // '/toDo': (context) => ToDoPage(),
+      '/toDo': (context) => MainScreen(),
+      '/': (context) => ToDoPage(),
     },
   ));
 }
