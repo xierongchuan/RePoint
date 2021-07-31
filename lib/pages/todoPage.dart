@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:repoint/main.dart';
 
@@ -14,8 +15,12 @@ class _ToDoPageState extends State<ToDoPage> {
 
   String _userToDo = '';
 
+  String displayName = '';
+
   @override
   void initState() {
+
+    getData();
 
     toDoList.add('KitKat x40');
     toDoList.add('Danissimo x100');
@@ -29,6 +34,15 @@ class _ToDoPageState extends State<ToDoPage> {
     toDoList.add('AMD Threadripper 3');
     toDoList.add('AMD Radeon RX 6900');
     toDoList.add('ATX 980W');
+
+    super.initState();
+  }
+
+  getData() async {
+    SharedPreferences LDB = await SharedPreferences.getInstance();
+    setState(() {
+      displayName = LDB.getString('displayName') ?? 'NULL';
+    });
   }
 
   void _menuOpen() {
@@ -183,7 +197,9 @@ class _ToDoPageState extends State<ToDoPage> {
           color: mGrey,
           size: 27.5,
         ),
-        onPressed: () {
+        onPressed: () async {
+          SharedPreferences LDB = await SharedPreferences.getInstance();
+          LDB.setString('displayName', 'ToDo');
           showDialog(context: context, builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: mDarkGrey,
