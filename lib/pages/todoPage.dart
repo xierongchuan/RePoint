@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'package:repoint/main.dart';
 
@@ -16,16 +14,8 @@ class _ToDoPageState extends State<ToDoPage> {
 
   String _userToDo = '';
 
-  void initFirebase() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-  }
-
   @override
   void initState() {
-    super.initState();
-
-    initFirebase();
 
     toDoList.add('KitKat x40');
     toDoList.add('Danissimo x100');
@@ -227,8 +217,6 @@ class _ToDoPageState extends State<ToDoPage> {
                     overlayColor: MaterialStateProperty.all<Color>(mLightGreyAlpha),
                   ),
                   onPressed: () {
-
-                    FirebaseFirestore.instance.collection('toDos').add({'toDo': "Hello, DB!"});
 
                     setState(() {
                       toDoList.insert(0 ,_userToDo);
